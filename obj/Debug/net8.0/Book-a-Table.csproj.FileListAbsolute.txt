@@ -135,3 +135,4 @@
 /Users/ashfaqul/Desktop/NET23Ashfaqul/Advanced-FullstackDev/Lab-01-API+DB/Book-a-Table/obj/Debug/net8.0/Book-a-Table.pdb
 /Users/ashfaqul/Desktop/NET23Ashfaqul/Advanced-FullstackDev/Lab-01-API+DB/Book-a-Table/obj/Debug/net8.0/Book-a-Table.genruntimeconfig.cache
 /Users/ashfaqul/Desktop/NET23Ashfaqul/Advanced-FullstackDev/Lab-01-API+DB/Book-a-Table/obj/Debug/net8.0/ref/Book-a-Table.dll
+/Users/ashfaqul/Desktop/NET23Ashfaqul/Advanced-FullstackDev/Lab-01-API+DB/Book-a-Table/obj/Debug/net8.0/Book-a-Table.sourcelink.json
