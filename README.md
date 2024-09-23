@@ -387,22 +387,7 @@
   "custState": "Stockholm"
 }
 ```
-**Response**:
-```json
-{
-  "custID": 5,
-  "custFirstname": "Janet",
-  "custLastname": "Jakobson",
-  "custPhone": "907052360",
-  "custEmail": "janet.jakobsson@xyz.se",
-  "custStreet": "Eriksgatan",
-  "custHousenum": "32",
-  "custCity": "Stockholm",
-  "custZipcode": "11324",
-  "custState": "Stockholm"
-}
-```
-**HTTP Status**: `204 Updated`
+**Response**: `204 Updated`
 
 #### d. Delete a Customer with ID:
 **Endpoint**: `DELETE /api/customers/2`  
@@ -518,22 +503,7 @@
   "totalGuests": 4
 }
 ```
-**Response**:
-```json
-curl -X 'PUT' \
-  'http://localhost:5044/api/Booking/6' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "bookingID": 6,
-  "boardID": 8,
-  "custID": 4,
-  "bookingDate": "2024-09-23T22:17:38.582Z",
-  "bookingTime": "2024-09-23T22:17:38.582Z",
-  "totalGuests": 4
-}'
-```
-**HTTP Status**: `204 No Content`
+**Response**: `204 No Content`
 
 #### e. Delete a Booking:
 **Endpoint**: `DELETE /api/bookings/5`  
