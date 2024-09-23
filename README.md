@@ -141,20 +141,7 @@
     "boardType": "Conference"
 }
 ```
-**Response**:
-```json
-curl -X 'PUT' \
-  'http://localhost:5044/api/Board/6' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "boardID": 6,
-    "boardNum": 6,
-    "totalSeats": 6,
-    "boardType": "Conference"
-}'
-```
-**HTTP Status**: `200 OK`
+**Response**: `204 No Content`
 
 #### e. Delete a Board with ID:
 **Endpoint**: `DELETE /api/boards/2`  
