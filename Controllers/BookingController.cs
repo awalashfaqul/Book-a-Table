@@ -34,8 +34,7 @@ namespace Book_a_Table.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BookingInfo>>> GetBookings()
         {
-            /* This will asynchronously retrieve all bookings from the database, 
-            including related Board and Customer entities via eager loading. */
+            /* This will asynchronously retrieve all bookings from the database. */
             return await _context.Bookings
                 .ToListAsync();
         }
@@ -46,8 +45,7 @@ namespace Book_a_Table.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<BookingInfo>> GetBooking(int id)
         {
-            /* This will asynchronously retrieve a specific booking, including the 
-            associated Board and Customer entities. */
+            /* This will asynchronously retrieve a specific booking. */
             var booking = await _context.Bookings
                 .FirstOrDefaultAsync(b => b.BookingID == id); // This will find the booking by its ID.
 
