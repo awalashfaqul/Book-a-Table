@@ -9,9 +9,27 @@
 ```json
 [
   {
-    "boardID": 1,
+    "boardID": 6,
+    "boardNum": 6,
+    "totalSeats": 8,
+    "boardType": "Conference"
+  },
+  {
+    "boardID": 7,
     "boardNum": 5,
     "totalSeats": 4,
+    "boardType": "Family"
+  },
+  {
+    "boardID": 8,
+    "boardNum": 3,
+    "totalSeats": 2,
+    "boardType": "Single"
+  },
+  {
+    "boardID": 9,
+    "boardNum": 4,
+    "totalSeats": 5,
     "boardType": "Family"
   }
 ]
@@ -24,47 +42,122 @@
 ```json
 {
   "boardNum": 6,
-  "totalSeats": 4,
+  "totalSeats": 8,
   "boardType": "Conference"
 }
 ```
 **Response**:
 ```json
 {
-  "boardID": 2,
+  "boardID": 6,
   "boardNum": 6,
-  "totalSeats": 4,
+  "totalSeats": 8,
   "boardType": "Conference"
 }
 ```
 **HTTP Status**: `201 Created`
 
-#### c. Update a Board:
-**Endpoint**: `PUT /api/boards/1`  
 **Request**:
 ```json
 {
-  "boardID": 1,
-  "boardNum": 7,
-  "totalSeats": 6,
+  "boardNum": 5,
+  "totalSeats": 4,
+  "boardType": "Family"
+}```
+
+**Response**:
+```json
+{
+  "boardID": 7,
+  "boardNum": 5,
+  "totalSeats": 4,
+  "boardType": "Family"
+}```
+
+**HTTP Status**: `201 Created`
+
+**Request**:
+```json
+{
+  "boardNum": 3,
+  "totalSeats": 2,
   "boardType": "Single"
 }
 ```
 **Response**:
 ```json
 {
-  "boardID": 1,
-  "boardNum": 7,
-  "totalSeats": 6,
+  "boardID": 8,
+  "boardNum": 3,
+  "totalSeats": 2,
+  "boardType": "Single"
+}
+```
+**HTTP Status**: `201 Created`
+
+**Request**:
+```json
+{
+  "boardNum": 4,
+  "totalSeats": 5,
+  "boardType": "Family"
+}
+```
+**Response**:
+```json
+{
+  "boardID": 9,
+  "boardNum": 4,
+  "totalSeats": 5,
+  "boardType": "Family"
+}
+```
+**HTTP Status**: `201 Created`
+
+#### c. Get a Boards with ID:
+**Endpoint**: `GET /api/boards/8`  
+**Request**: No input needed  
+**Response**:
+```json
+{
+  "boardID": 8,
+  "boardNum": 3,
+  "totalSeats": 2,
   "boardType": "Single"
 }
 ```
 **HTTP Status**: `200 OK`
 
-#### d. Delete a Board:
+#### d. Update a Board:
+**Endpoint**: `PUT /api/boards/6`  
+**Request**:
+```json
+{
+    "boardID": 6,
+    "boardNum": 6,
+    "totalSeats": 6,
+    "boardType": "Conference"
+}
+```
+**Response**:
+```json
+curl -X 'PUT' \
+  'http://localhost:5044/api/Board/6' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "boardID": 6,
+    "boardNum": 6,
+    "totalSeats": 6,
+    "boardType": "Conference"
+}'
+```
+**HTTP Status**: `200 OK`
+
+#### e. Delete a Board with ID:
 **Endpoint**: `DELETE /api/boards/2`  
 **Request**: No input needed  
-**Response**: `204 No Content`
+**Response**: `204`
 
 ---
 
@@ -77,11 +170,64 @@
 ```json
 [
   {
-    "custID": 1,
+    "custID": 2,
+    "custFirstname": "string",
+    "custLastname": "string",
+    "custPhone": "string",
+    "custEmail": "string",
+    "custStreet": "string",
+    "custHousenum": "string",
+    "custCity": "string",
+    "custZipcode": "string",
+    "custState": "string"
+  },
+  {
+    "custID": 3,
+    "custFirstname": "Will",
+    "custLastname": "Smith",
+    "custPhone": "987654321",
+    "custEmail": "will.smith@abc.com",
+    "custStreet": "Main St",
+    "custHousenum": "10",
+    "custCity": "Vällingby",
+    "custZipcode": "12345",
+    "custState": "Stockholm"
+  },
+  {
+    "custID": 4,
+    "custFirstname": "Eva",
+    "custLastname": "Swedberg",
+    "custPhone": "987654456",
+    "custEmail": "eva.swedberg@abc.com",
+    "custStreet": "St. Eriksplan",
+    "custHousenum": "72",
+    "custCity": "Stockholm",
+    "custZipcode": "11324",
+    "custState": "Stockholm"
+  },
+  {
+    "custID": 5,
+    "custFirstname": "Janet",
+    "custLastname": "Jakobson",
+    "custPhone": "987652367",
+    "custEmail": "janet.jakobsson@xyz.se",
+    "custStreet": "Eriksgatan",
+    "custHousenum": "62",
+    "custCity": "Stockholm",
+    "custZipcode": "11324",
+    "custState": "Stockholm"
+  },
+  {
+    "custID": 6,
     "custFirstname": "Jasim",
-    "custLastname": "Uddin",
-    "custPhone": "01911344607",
-    "custEmail": "jasim.uddin@yahoo.com"
+    "custLastname": "Uddinsson",
+    "custPhone": "876523679",
+    "custEmail": "jasim.uddinsson@xyz.se",
+    "custStreet": "Fleminggatan",
+    "custHousenum": "62",
+    "custCity": "Stockholm",
+    "custZipcode": "11325",
+    "custState": "Stockholm"
   }
 ]
 ```
@@ -106,40 +252,170 @@
 **Response**:
 ```json
 {
-  "custID": 2,
+  "custID": 3,
   "custFirstname": "Will",
   "custLastname": "Smith",
   "custPhone": "987654321",
-  "custEmail": "will.smith@abc.com"
+  "custEmail": "will.smith@abc.com",
+  "custStreet": "Main St",
+  "custHousenum": "10",
+  "custCity": "Vällingby",
+  "custZipcode": "12345",
+  "custState": "Stockholm"
 }
 ```
 **HTTP Status**: `201 Created`
+
+**Request**:
+```json
+{
+  "custFirstname": "Eva",
+  "custLastname": "Swedberg",
+  "custPhone": "987654456",
+  "custEmail": "eva.swedberg@abc.com",
+  "custStreet": "St. Eriksplan",
+  "custHousenum": "72",
+  "custCity": "Stockholm",
+  "custZipcode": "11324",
+  "custState": "Stockholm"
+}
+```
+**Response**:
+```json
+{
+  "custID": 4,
+  "custFirstname": "Eva",
+  "custLastname": "Swedberg",
+  "custPhone": "987654456",
+  "custEmail": "eva.swedberg@abc.com",
+  "custStreet": "St. Eriksplan",
+  "custHousenum": "72",
+  "custCity": "Stockholm",
+  "custZipcode": "11324",
+  "custState": "Stockholm"
+}
+```
+**HTTP Status**: `201 Created`
+
+**Request**:
+```json
+{
+  "custFirstname": "Janet",
+  "custLastname": "Jakobson",
+  "custPhone": "987652367",
+  "custEmail": "janet.jakobsson@xyz.se",
+  "custStreet": "Eriksgatan",
+  "custHousenum": "62",
+  "custCity": "Stockholm",
+  "custZipcode": "11324",
+  "custState": "Stockholm"
+}
+```
+**Response**:
+```json
+{
+  "custID": 5,
+  "custFirstname": "Janet",
+  "custLastname": "Jakobson",
+  "custPhone": "987652367",
+  "custEmail": "janet.jakobsson@xyz.se",
+  "custStreet": "Eriksgatan",
+  "custHousenum": "62",
+  "custCity": "Stockholm",
+  "custZipcode": "11324",
+  "custState": "Stockholm"
+}
+```
+**HTTP Status**: `201 Created`
+
+**Request**:
+```json
+{
+  "custFirstname": "Jasim",
+  "custLastname": "Uddinsson",
+  "custPhone": "876523679",
+  "custEmail": "jasim.uddinsson@xyz.se",
+  "custStreet": "Fleminggatan",
+  "custHousenum": "62",
+  "custCity": "Stockholm",
+  "custZipcode": "11325",
+  "custState": "Stockholm"
+}
+```
+**Response**:
+```json
+{
+  "custID": 6,
+  "custFirstname": "Jasim",
+  "custLastname": "Uddinsson",
+  "custPhone": "876523679",
+  "custEmail": "jasim.uddinsson@xyz.se",
+  "custStreet": "Fleminggatan",
+  "custHousenum": "62",
+  "custCity": "Stockholm",
+  "custZipcode": "11325",
+  "custState": "Stockholm"
+}
+```
+**HTTP Status**: `201 Created`
+
+#### a. Get a Customer by ID:
+**Endpoint**: `GET /api/customers/6`  
+**Request**: No input needed  
+**Response**:
+```json
+[
+  {
+    "custID": 6,
+    "custFirstname": "Jasim",
+    "custLastname": "Uddinsson",
+    "custPhone": "876523679",
+    "custEmail": "jasim.uddinsson@xyz.se",
+    "custStreet": "Fleminggatan",
+    "custHousenum": "62",
+    "custCity": "Stockholm",
+    "custZipcode": "11325",
+    "custState": "Stockholm"
+  }
+]
+```
+**HTTP Status**: `200 OK`
 
 #### c. Update a Customer:
 **Endpoint**: `PUT /api/customers/1`  
 **Request**:
 ```json
 {
-  "custID": 1,
-  "custFirstname": "Johnathan",
-  "custLastname": "Dahlen",
-  "custPhone": "123456789",
-  "custEmail": "johnathan@xyz.com"
+  "custID": 5,
+  "custFirstname": "Janet",
+  "custLastname": "Jakobson",
+  "custPhone": "907052360",
+  "custEmail": "janet.jakobsson@xyz.se",
+  "custStreet": "Eriksgatan",
+  "custHousenum": "32",
+  "custCity": "Stockholm",
+  "custZipcode": "11324",
+  "custState": "Stockholm"
 }
 ```
 **Response**:
 ```json
 {
-  "custID": 1,
-  "custFirstname": "Johnathan",
-  "custLastname": "Dahlen",
-  "custPhone": "123456789",
-  "custEmail": "johnathan@xyz.com"
+  "custID": 5,
+  "custFirstname": "Janet",
+  "custLastname": "Jakobson",
+  "custPhone": "907052360",
+  "custEmail": "janet.jakobsson@xyz.se",
+  "custStreet": "Eriksgatan",
+  "custHousenum": "32",
+  "custCity": "Stockholm",
+  "custZipcode": "11324",
+  "custState": "Stockholm"
 }
 ```
-**HTTP Status**: `200 OK`
+**HTTP Status**: `204 Updated`
 
-#### d. Delete a Customer:
+#### d. Delete a Customer with ID:
 **Endpoint**: `DELETE /api/customers/2`  
 **Request**: No input needed  
 **Response**: `204 No Content`
