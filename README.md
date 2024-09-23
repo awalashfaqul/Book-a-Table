@@ -63,7 +63,8 @@
   "boardNum": 5,
   "totalSeats": 4,
   "boardType": "Family"
-}```
+}
+```
 
 **Response**:
 ```json
@@ -72,7 +73,8 @@
   "boardNum": 5,
   "totalSeats": 4,
   "boardType": "Family"
-}```
+}
+```
 
 **HTTP Status**: `201 Created`
 
@@ -431,12 +433,20 @@ curl -X 'PUT' \
 ```json
 [
   {
-    "bookingID": 1,
-    "custID": 1,
-    "boardID": 2,
-    "bookingDate": "2024-09-30",
-    "bookingTime": "19:00",
-    "numberOfPeople": 4
+    "bookingID": 5,
+    "boardID": 7,
+    "custID": 3,
+    "bookingDate": "2024-09-23T22:06:34.139",
+    "bookingTime": "2024-09-23T22:06:34.139",
+    "totalGuests": 3
+  },
+  {
+    "bookingID": 6,
+    "boardID": 8,
+    "custID": 4,
+    "bookingDate": "2024-09-23T22:06:34.139",
+    "bookingTime": "2024-09-23T22:06:34.139",
+    "totalGuests": 2
   }
 ]
 ```
@@ -447,54 +457,99 @@ curl -X 'PUT' \
 **Request**:
 ```json
 {
-  "custID": 2,
-  "boardID": 1,
-  "bookingDate": "2024-10-01",
-  "bookingTime": "18:00",
-  "numberOfPeople": 2
+  "boardID": 7,
+  "custID": 3,
+  "bookingDate": "2024-09-23T22:06:34.139Z",
+  "bookingTime": "2024-09-23T22:06:34.139Z",
+  "totalGuests": 3
 }
 ```
 **Response**:
 ```json
 {
-  "bookingID": 2,
-  "custID": 2,
-  "boardID": 1,
-  "bookingDate": "2024-10-01",
-  "bookingTime": "18:00",
-  "numberOfPeople": 2
+  "bookingID": 5,
+  "boardID": 7,
+  "custID": 3,
+  "bookingDate": "2024-09-23T22:06:34.139Z",
+  "bookingTime": "2024-09-23T22:06:34.139Z",
+  "totalGuests": 3
 }
 ```
 **HTTP Status**: `201 Created`
 
-#### c. Update a Booking:
-**Endpoint**: `PUT /api/bookings/1`  
 **Request**:
 ```json
 {
-  "bookingID": 1,
-  "custID": 1,
-  "boardID": 2,
-  "bookingDate": "2024-10-02",
-  "bookingTime": "20:00",
-  "numberOfPeople": 3
+  "boardID": 8,
+  "custID": 4,
+  "bookingDate": "2024-09-23T22:06:34.139Z",
+  "bookingTime": "2024-09-23T22:06:34.139Z",
+  "totalGuests": 2
 }
 ```
 **Response**:
 ```json
 {
-  "bookingID": 1,
-  "custID": 1,
-  "boardID": 2,
-  "bookingDate": "2024-10-02",
-  "bookingTime": "20:00",
-  "numberOfPeople": 3
+  "bookingID": 6,
+  "boardID": 8,
+  "custID": 4,
+  "bookingDate": "2024-09-23T22:06:34.139Z",
+  "bookingTime": "2024-09-23T22:06:34.139Z",
+  "totalGuests": 2
 }
+```
+**HTTP Status**: `201 Created`
+
+#### c. Get Booking by ID:
+**Endpoint**: `GET /api/bookings/6`  
+**Request**: No input needed  
+**Response**:
+```json
+[
+  {
+    "bookingID": 6,
+    "boardID": 8,
+    "custID": 4,
+    "bookingDate": "2024-09-23T22:06:34.139",
+    "bookingTime": "2024-09-23T22:06:34.139",
+    "totalGuests": 2
+  }
+]
 ```
 **HTTP Status**: `200 OK`
 
-#### d. Delete a Booking:
-**Endpoint**: `DELETE /api/bookings/2`  
+#### d. Update a Booking:
+**Endpoint**: `PUT /api/bookings/1`  
+**Request**:
+```json
+{
+  "bookingID": 6,
+  "boardID": 7,
+  "custID": 4,
+  "bookingDate": "2024-09-23T22:17:38.582Z",
+  "bookingTime": "2024-09-23T22:17:38.582Z",
+  "totalGuests": 4
+}
+```
+**Response**:
+```json
+curl -X 'PUT' \
+  'http://localhost:5044/api/Booking/6' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "bookingID": 6,
+  "boardID": 8,
+  "custID": 4,
+  "bookingDate": "2024-09-23T22:17:38.582Z",
+  "bookingTime": "2024-09-23T22:17:38.582Z",
+  "totalGuests": 4
+}'
+```
+**HTTP Status**: `204 No Content`
+
+#### e. Delete a Booking:
+**Endpoint**: `DELETE /api/bookings/5`  
 **Request**: No input needed  
 **Response**: `204 No Content`
 
@@ -510,8 +565,20 @@ curl -X 'PUT' \
 [
   {
     "menuItemID": 1,
-    "name": "Pizza",
-    "price": 12.99,
+    "name": "Pasta Risotto",
+    "price": 179,
+    "isAvailable": true
+  },
+  {
+    "menuItemID": 2,
+    "name": "Pan Fried Salmon",
+    "price": 210,
+    "isAvailable": true
+  },
+  {
+    "menuItemID": 3,
+    "name": "Plant Balls with green Salad",
+    "price": 149,
     "isAvailable": true
   }
 ]
@@ -523,8 +590,27 @@ curl -X 'PUT' \
 **Request**:
 ```json
 {
-  "name": "Pasta",
-  "price": 10.99,
+  "name": "Pasta Risotto",
+  "price": 179,
+  "isAvailable": true
+}
+```
+**Response**:
+```json
+{
+  "menuItemID": 1,
+  "name": "Pasta Risotto",
+  "price": 179,
+  "isAvailable": true
+}
+```
+**HTTP Status**: `201 Created`
+
+**Request**:
+```json
+{
+  "name": "Pan Fried Salmon",
+  "price": 210,
   "isAvailable": true
 }
 ```
@@ -532,37 +618,63 @@ curl -X 'PUT' \
 ```json
 {
   "menuItemID": 2,
-  "name": "Pasta",
-  "price": 10.99,
+  "name": "Pan Fried Salmon",
+  "price": 210,
   "isAvailable": true
 }
 ```
 **HTTP Status**: `201 Created`
 
-#### c. Update a Menu Item:
-**Endpoint**: `PUT /api/menuitems/1`  
 **Request**:
 ```json
 {
-  "menuItemID": 1,
-  "name": "Pizza",
-  "price": 14.99,
+  "name": "Plant Balls with green Salad",
+  "price": 149,
   "isAvailable": true
 }
 ```
 **Response**:
 ```json
 {
-  "menuItemID": 1,
-  "name": "Pizza",
-  "price": 14.99,
+  "menuItemID": 3,
+  "name": "Plant Balls with green Salad",
+  "price": 149,
   "isAvailable": true
 }
 ```
+**HTTP Status**: `201 Created`
+
+#### c. Get Menu Items by ID:
+**Endpoint**: `GET /api/menuitems/2`  
+**Request**: No input needed  
+**Response**:
+```json
+[
+  {
+    "menuItemID": 2,
+    "name": "Pan Fried Salmon",
+    "price": 210,
+    "isAvailable": true
+  }
+]
+```
 **HTTP Status**: `200 OK`
 
-#### d. Delete a Menu Item:
-**Endpoint**: `DELETE /api/menuitems/2`  
+#### d. Update a Menu Item by ID:
+**Endpoint**: `PUT /api/menuitems/2`  
+**Request**:
+```json
+{
+    "menuItemID": 2,
+    "name": "Pan Fried Salmon",
+    "price": 185,
+    "isAvailable": true
+  }
+```
+**Response**: `204 No Content`
+
+#### e. Delete a Menu Item:
+**Endpoint**: `DELETE /api/menuitems/3`  
 **Request**: No input needed  
 **Response**: `204 No Content`
 
