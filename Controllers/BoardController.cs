@@ -131,7 +131,7 @@ namespace Book_a_Table.Controllers
             // To Asynchronously save changes to the database (performs the delete operation).
             await _context.SaveChangesAsync();
 
-            // This returns 204 No Content to indicate the delete was successful.
+            // This returns 204 to indicate the delete was successful.
             return NoContent();
         }
     }

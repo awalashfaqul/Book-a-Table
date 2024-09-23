@@ -37,8 +37,6 @@ namespace Book_a_Table.Controllers
             /* This will asynchronously retrieve all bookings from the database, 
             including related Board and Customer entities via eager loading. */
             return await _context.Bookings
-                .Include(b => b.Board) // This will include Board entity associated with the booking.
-                .Include(b => b.Customer) // This will include Customer entity associated with the booking.
                 .ToListAsync();
         }
 
@@ -51,8 +49,6 @@ namespace Book_a_Table.Controllers
             /* This will asynchronously retrieve a specific booking, including the 
             associated Board and Customer entities. */
             var booking = await _context.Bookings
-                .Include(b => b.Board) // This will include Board entity.
-                .Include(b => b.Customer) // This will include Customer entity.
                 .FirstOrDefaultAsync(b => b.BookingID == id); // This will find the booking by its ID.
 
             /* If the booking is not found, return 404 Not Found. */
