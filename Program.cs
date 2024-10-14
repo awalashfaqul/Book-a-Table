@@ -1,59 +1,51 @@
-using Book_a_Table.Data; 
+using Book_a_Table.Data;
+using Book_a_Table.Data.Repositories;
+using Book_a_Table.Data.Repositories.IRepositories;
+using Book_a_Table.Services;
+using Book_a_Table.Services.IServices;
 using Microsoft.EntityFrameworkCore; 
 
-/* Creating a WebApplication builder that will set up services, 
-configurations, and the application host for dependency injection. */
 var builder = WebApplication.CreateBuilder(args); 
 
 
 // Adding services to the container:
 
-/* Adding support for discovering endpoints in the API, 
-enabling automatic generation of endpoint metadata for Swagger. */
-builder.Services.AddEndpointsApiExplorer(); 
+builder.Services.AddDbContext<BookATableDbContext>(options => 
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
-/* Adding and configuring Swagger, which will generate API 
-documentation and allow testing the API directly in the browser. */
+builder.Services.AddControllers(); 
+builder.Services.AddEndpointsApiExplorer(); 
 builder.Services.AddSwaggerGen(); 
 
-/* Registering the application's database context (`AppDbContext`) 
-with dependency injection and configures it to use SQL Server. The 
-connection string "DefaultConnection" is retrieved from appsettings.json 
-or other configuration sources. */
-builder.Services.AddDbContext<AppDbContext>(options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<ITableRepository, TableRepository>();
+builder.Services.AddScoped<ITableService, TableService>();
 
-/* Registering the controllers in the project so that they can handle 
-incoming HTTP requests (API endpoints). */
-builder.Services.AddControllers(); 
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
-/* Building the WebApplication with the services and configuration defined 
-in the builder. This app instance is used to configure middleware and run 
-the application. */
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+
+builder.Services.AddScoped<IMenuItemRepository, MenuItemRepository>();
+builder.Services.AddScoped<IMenuItemService, MenuItemService>();
+
 var app = builder.Build(); 
 
 
 // Now, configuring the HTTP request pipeline...
 if (app.Environment.IsDevelopment()) 
 {
-    app.UseSwagger(); /* If the app is running in development mode, enable 
-                         Swagger middleware to generate API documentation. */ 
-    app.UseSwaggerUI(); /* Enables the Swagger UI, an interactive interface 
-                           for testing the API. */ 
+    app.UseSwagger(); 
+    app.UseSwaggerUI(); 
 }
 
-/* Enforcing HTTPS by redirecting all HTTP requests to HTTPS to ensure secure 
-communication. */
+
 app.UseHttpsRedirection(); 
 
-/* Enabling authorization middleware to verify if the user is allowed to access 
-certain resources, ensuring protected endpoints are secure. */
 app.UseAuthorization(); 
 
-/* Maps incoming HTTP requests to the corresponding controller actions based on 
-routing attributes defined in the controllers. */
 app.MapControllers(); 
 
-/* Starts the application and listens for incoming HTTP requests, making the API 
-functional. */
 app.Run(); 
