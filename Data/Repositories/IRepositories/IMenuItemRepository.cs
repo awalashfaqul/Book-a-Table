@@ -13,6 +13,6 @@ namespace Book_a_Table.Data.Repositories.IRepositories
         Task<MenuItem> GetMenuItemByIdAsync(int menuItemId); // Read by ID
         Task UpdateMenuItemAsync(MenuItem menuItem); // Update
         Task DeleteMenuItemAsync(int menuItemId); // Delete
-        Task<bool> ItemAvailableAsync(string ItemName);
+        
     }
 }

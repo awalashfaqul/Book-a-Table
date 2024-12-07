@@ -13,5 +13,6 @@ namespace Book_a_Table.Data.Repositories.IRepositories
         Task<Customer> GetCustomerByIdAsync(int customerId); // Read by ID
         Task UpdateCustomerAsync(Customer customer); // Update
         Task DeleteCustomerAsync(int customerId); // Delete
+        Task<Customer> GetCustomerForBookingAsync(string email);
     }
 }
