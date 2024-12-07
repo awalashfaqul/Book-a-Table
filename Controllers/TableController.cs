@@ -21,9 +21,9 @@ namespace Book_a_Table.Controllers
 
         [HttpPost]
         [Route("CREATE_Table")]
-        public async Task<IActionResult> AddTableAsync(CreateTableDTO tableCreateDto)
+        public async Task<IActionResult> AddTableAsync(CreateTableDTO createTableDto)
         {
-            return await _tableService.AddTableAsync(tableCreateDto);
+            return await _tableService.AddTableAsync(createTableDto);
         }
 
         [HttpGet]
@@ -54,6 +54,13 @@ namespace Book_a_Table.Controllers
         {
             await _tableService.DeleteTableAsync(tableId);
             return NoContent();
+        }
+
+        [HttpGet]
+        [Route("Available_Tables")]
+        public async Task<IActionResult> GetAvailableTables(TableRemainsDTO tableRemainsDto)
+        {
+        return Ok(await _tableService.GetAvailableTables(tableRemainsDto.NumberOfPeople, tableRemainsDto.StartBookingDateTime));
         }
     }
 }        

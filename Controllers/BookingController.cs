@@ -44,23 +44,23 @@ namespace Book_a_Table.Controllers
 
         [HttpPut]
         [Route("UPDATE_Booking")]
-        // public async Task<IActionResult> UpdateBookingAsync(int bookingId, UpdateBookingDTO updateBookingDto)
-        // {
-        //     await _bookingService.UpdateBookingAsync(bookingId, updateBookingDto);
-        //     return NoContent();
-        // }
-
-        public async Task<IActionResult> UpdateBooking(int bookingId, [FromBody] UpdateBookingDTO updateBookingDto)
+        public async Task<IActionResult> UpdateBookingAsync(int bookingId, UpdateBookingDTO updateBookingDto)
         {
-            var result = await _bookingService.UpdateBookingAsync(bookingId, updateBookingDto);
-
-            if (result.StartsWith("Booking with ID"))
-            {
-                return NotFound(result); // Return NotFound if the booking is not found
-            }
-
-            return NoContent(); // Return No Content if the update is successful
+             await _bookingService.UpdateBookingAsync(bookingId, updateBookingDto);
+             return NoContent();
         }
+
+        // public async Task<IActionResult> UpdateBooking(int bookingId, [FromBody] UpdateBookingDTO updateBookingDto)
+        // {
+        //     var result = await _bookingService.UpdateBookingAsync(bookingId, updateBookingDto);
+
+        //     if (result.StartsWith("Booking with ID"))
+        //     {
+        //         return NotFound(result); // Return NotFound if the booking is not found
+        //     }
+
+        //     return NoContent(); // Return No Content if the update is successful
+        // }
 
         [HttpDelete]
         [Route("DELETE_Booking")]

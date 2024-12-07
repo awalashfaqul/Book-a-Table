@@ -34,27 +34,27 @@ namespace Book_a_Table.Controllers
             return Ok(await _customerService.GetAllCustomersAsync());
         }
 
-    [HttpGet]
-    [Route("READ_Customer_By_Id")]
-    public async Task<IActionResult> GetCustomerByIdAsync(int customerId)
-    {
-      return Ok(await _customerService.GetCustomerByIdAsync(customerId));
-    }
+        [HttpGet]
+        [Route("READ_Customer_By_Id")]
+        public async Task<IActionResult> GetCustomerByIdAsync(int customerId)
+        {
+          return Ok(await _customerService.GetCustomerByIdAsync(customerId));
+        }
 
-    [HttpPut]
-    [Route("UPDATE_Customer")]
-    public async Task<IActionResult> UpdateCustomerAsync(int customerId, UpdateCustomerDTO updateCustomerDto)
-    {
-      await _customerService.UpdateCustomerAsync(customerId, updateCustomerDto);
-      return NoContent();
-    }
+        [HttpPut]
+        [Route("UPDATE_Customer")]
+        public async Task<IActionResult> UpdateCustomerAsync(int customerId, UpdateCustomerDTO updateCustomerDto)
+        {
+          await _customerService.UpdateCustomerAsync(customerId, updateCustomerDto);
+          return NoContent();
+        }
 
-    [HttpDelete]
-    [Route("DELETE_Customer")]
-    public async Task<IActionResult> DeleteCustomerAsync(int customerId)
-    {
-      await _customerService.DeleteCustomerAsync(customerId);
-      return NoContent();
-    }
+        [HttpDelete]
+        [Route("DELETE_Customer")]
+        public async Task<IActionResult> DeleteCustomerAsync(int customerId)
+        {
+          await _customerService.DeleteCustomerAsync(customerId);
+          return NoContent();
+        }
     }
 }
