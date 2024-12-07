@@ -12,8 +12,8 @@ namespace Book_a_Table.Services.IServices
     {
         Task<IActionResult> AddBookingAsync(CreateBookingDTO createBooking);
         Task<Booking> GetBookingByIdAsync(int bookingId);
-        Task<IEnumerable<GetBookingDTO>> GetAllBookingsAsync();
-        Task<string> UpdateBookingAsync(int bookingId, UpdateBookingDTO updateBooking);
+        Task<IEnumerable<Booking>> GetAllBookingsAsync();
+        Task<IActionResult> UpdateBookingAsync(int bookingId, UpdateBookingDTO updateBooking);
         Task DeleteBookingAsync(int bookingId);
     }
 }

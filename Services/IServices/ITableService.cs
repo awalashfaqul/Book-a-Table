@@ -13,7 +13,8 @@ namespace Book_a_Table.Services.IServices
         Task<IActionResult> AddTableAsync(CreateTableDTO table);
         Task<Table> GetTableByIdAsync(int tableId);
         Task<IEnumerable<Table>> GetAllTablesAsync();
-        Task UpdateTableAsync(int tableId, UpdateTableDTO updateTable);
+        Task UpdateTableAsync(int tableId, UpdateTableDTO updateTableDto);
         Task DeleteTableAsync(int tableId);
+        Task<IEnumerable<Table>> GetAvailableTables(int numberOfPeople, DateTime startBookingDateTime);
     }
 }

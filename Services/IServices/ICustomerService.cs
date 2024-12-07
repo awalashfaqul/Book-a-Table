@@ -11,8 +11,8 @@ namespace Book_a_Table.Services.IServices
     public interface ICustomerService
     {
         Task AddCustomerAsync(CreateCustomerDTO customer);
-        Task<Customer> GetCustomerByIdAsync(int customerId);
         Task<IEnumerable<Customer>> GetAllCustomersAsync();
+        Task<Customer> GetCustomerByIdAsync(int customerId);
         Task UpdateCustomerAsync(int customerId, UpdateCustomerDTO updateCustomer);
         Task DeleteCustomerAsync(int customerId);
     }

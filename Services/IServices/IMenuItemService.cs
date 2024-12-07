@@ -10,8 +10,8 @@ namespace Book_a_Table.Services.IServices
     public interface IMenuItemService
     {
         Task AddMenuItemAsync(CreateMenuItemDTO menuItem);
-        Task<MenuItem> GetMenuItemByIdAsync(int menuItemId);
         Task<IEnumerable<MenuItem>> GetAllMenuItemsAsync();
+        Task<MenuItem> GetMenuItemByIdAsync(int menuItemId);
         Task UpdateMenuItemAsync(int menuItemId, UpdateMenuItemDTO updateMenuItem);
         Task DeleteMenuItemAsync(int menuItemId);
     }
