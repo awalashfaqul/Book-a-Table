@@ -23,12 +23,11 @@ namespace Book_a_Table.Services
             await _customerRepository.AddCustomerAsync(new Customer
             {
                 CustomerName = customer.CustomerName,
-                CustomerPhone = customer.CustomerPhone,
                 CustomerEmail = customer.CustomerEmail
             });
         }
 
-public async Task<IEnumerable<Customer>> GetAllCustomersAsync()
+        public async Task<IEnumerable<Customer>> GetAllCustomersAsync()
         {
             return await _customerRepository.GetAllCustomersAsync();
         }
@@ -42,7 +41,6 @@ public async Task<IEnumerable<Customer>> GetAllCustomersAsync()
         {
             var customer = await _customerRepository.GetCustomerByIdAsync(customerId);
             customer.CustomerName = updateCustomer.CustomerName;
-            customer.CustomerPhone = updateCustomer.CustomerPhone;
             customer.CustomerEmail = updateCustomer.CustomerEmail;
 
             await _customerRepository.UpdateCustomerAsync(customer);

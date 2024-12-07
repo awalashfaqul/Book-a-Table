@@ -24,7 +24,8 @@ namespace Book_a_Table.Services
             {
                 ItemName = menuItem.ItemName,
                 ItemPrice = menuItem.ItemPrice,
-                IsAvailable = menuItem.IsAvailable
+                IsAvailable = menuItem.IsAvailable,
+                IsPopular = menuItem.IsPopular
             });
         }
 
@@ -50,6 +51,7 @@ namespace Book_a_Table.Services
             updateItem.ItemName = updateMenuItem.ItemName;
             updateItem.ItemPrice = updateMenuItem.ItemPrice;
             updateItem.IsAvailable = updateMenuItem.IsAvailable;
+            updateItem.IsPopular = updateMenuItem.IsPopular; 
             
             await _menuItemRepository.UpdateMenuItemAsync(updateItem);
         }

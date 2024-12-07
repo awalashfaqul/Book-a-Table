@@ -21,11 +21,11 @@ namespace Book_a_Table.Services
 
         public async Task<IActionResult> AddTableAsync(CreateTableDTO table)
         {
-            var tableBooked = await _tableRepository.TableBookedAsync(table.TableNumber);
+            var tableExists = await _tableRepository.TableExistsAsync(table.TableNumber);
 
-            if (tableBooked)
+            if (tableExists)
             {
-                return new ConflictObjectResult("Table is already Booked.");
+                return new ConflictObjectResult("Table exists!!");
             }
 
             await _tableRepository.AddTableAsync(new Table
@@ -47,31 +47,36 @@ namespace Book_a_Table.Services
             return await _tableRepository.GetTableByIdAsync(tableId);
         }
 
-        public async Task UpdateTableAsync(int tableId, UpdateTableDTO updateTable)
+        public async Task UpdateTableAsync(int tableId, UpdateTableDTO updateTableDto)
         {
-            var tableToUpdate = await _tableRepository.GetTableByIdAsync(tableId);
+            var updateTable = await _tableRepository.GetTableByIdAsync(tableId);
 
-            if (tableToUpdate == null)
+            if (updateTable == null)
             {
                 return;
             }
 
-            tableToUpdate.TableNumber = updateTable.TableNumber;
-            tableToUpdate.NumberOfSeats = updateTable.NumberOfSeats;
+            updateTable.TableNumber = updateTableDto.TableNumber;
+            updateTable.NumberOfSeats = updateTableDto.NumberOfSeats;
 
-            await _tableRepository.UpdateTableAsync(tableToUpdate);
+            await _tableRepository.UpdateTableAsync(updateTable);
         }
 
         public async Task DeleteTableAsync(int tableId)
         {
-            var tableToDelete = await _tableRepository.GetTableByIdAsync(tableId);
+            var deleteTable = await _tableRepository.GetTableByIdAsync(tableId);
 
-            if (tableToDelete == null)
+            if (deleteTable == null)
             {
                 return;
             }
 
             await _tableRepository.DeleteTableAsync(tableId);
+        }
+
+        public async Task<IEnumerable<Table>> GetAvailableTables(int numberOfPeople, DateTime startBookingDateTime)
+        {
+            return await _tableRepository.GetAvailableTablesAsync(numberOfPeople, startBookingDateTime);
         }
     }
 }
