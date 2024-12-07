@@ -60,5 +60,10 @@ namespace Book_a_Table.Data.Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Customer> GetCustomerForBookingAsync(string email)
+        {
+            return await _context.Customers.FirstOrDefaultAsync(c => c.CustomerEmail == email);
+        }
     }
 }

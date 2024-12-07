@@ -24,20 +24,22 @@ namespace Book_a_Table.Data.Repositories
 
         public async Task<IEnumerable<Booking>> GetAllBookingsAsync()
         {
-            return await _context.Bookings
-            .Include(b => b.Customer)
-            .Include(b => b.Table)
-            .ToListAsync();
+            var booking = await _context.Bookings.ToListAsync();
+            return booking;
+            // return await _context.Bookings
+            // .Include(b => b.Customer)
+            // .Include(b => b.Table)
+            // .ToListAsync();
         }
 
         public async Task<Booking> GetBookingByIdAsync(int bookingId)
         {
-            // var booking = await _context.Bookings.FindAsync(bookingId);
-            // return booking;
-            return await _context.Bookings
-            .Include(b => b.Customer)
-            .Include(b => b.Table)
-            .FirstOrDefaultAsync(b => b.BookingId == bookingId);
+            var booking = await _context.Bookings.FindAsync(bookingId);
+            return booking;
+            // return await _context.Bookings
+            // .Include(b => b.Customer)
+            // .Include(b => b.Table)
+            // .FirstOrDefaultAsync(b => b.BookingId == bookingId);
         }
 
         public async Task UpdateBookingAsync(Booking booking)
@@ -63,7 +65,7 @@ namespace Book_a_Table.Data.Repositories
 
         public async Task<bool> BookingConflictAsync(int tableId, DateTime startBookingDateTime)
         {
-            DateTime endBookingDateTime = startBookingDateTime.AddHours(2);
+            DateTime endBookingDateTime = startBookingDateTime.AddHours(3);
             return await _context.Bookings.AnyAsync
             (
                 b => b.TableId == tableId &&

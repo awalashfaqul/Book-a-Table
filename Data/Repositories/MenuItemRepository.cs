@@ -55,10 +55,5 @@ namespace Book_a_Table.Data.Repositories
 
             await _context.SaveChangesAsync();
         }
-
-        public async Task<bool> ItemAvailableAsync(string ItemName)
-        {
-            return await _context.MenuItems.AnyAsync(m => m.ItemName == ItemName);
-        }
     }
 }

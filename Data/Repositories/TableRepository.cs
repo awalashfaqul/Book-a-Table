@@ -14,7 +14,7 @@ namespace Book_a_Table.Data.Repositories
 
         public TableRepository(BookATableDbContext context)
         {
-        _context = context;
+            _context = context;
         }
 
         public async Task AddTableAsync(Table table)
@@ -62,7 +62,23 @@ namespace Book_a_Table.Data.Repositories
         
         }
 
-        public async Task<bool> TableBookedAsync(int tableNumber)
+        public async Task<Table> GetTableWithTableNumberAsync(int tableNumber)
+        {
+            return await _context.Tables
+                  .Include(t => t.Bookings)
+                  .FirstOrDefaultAsync(t => t.TableNumber == tableNumber);
+        }
+
+        public async Task<IEnumerable<Table>> GetAvailableTablesAsync(int numberOfPeople, DateTime startBookingDateTime)
+        {
+            DateTime endBookingDateTime = startBookingDateTime.AddHours(3);
+            return await _context.Tables
+                  .Where(t => t.NumberOfSeats >= numberOfPeople &&
+                    !t.Bookings.Any(b => b.StartBookingDateTime <= endBookingDateTime && b.EndBookingDateTime >= startBookingDateTime))
+                  .ToListAsync();
+        }
+
+        public async Task<bool> TableExistsAsync(int tableNumber)
         {
             return await _context.Tables.AnyAsync(t => t.TableNumber == tableNumber);
         }
