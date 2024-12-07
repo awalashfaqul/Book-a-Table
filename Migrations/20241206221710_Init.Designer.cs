@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Book_a_Table.Migrations
 {
     [DbContext(typeof(BookATableDbContext))]
-    [Migration("20241014194640_Init")]
+    [Migration("20241206221710_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -33,8 +33,14 @@ namespace Book_a_Table.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
 
+                    b.Property<string>("CustomerEmail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
+
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndBookingDateTime")
                         .HasColumnType("datetime2");
@@ -46,6 +52,9 @@ namespace Book_a_Table.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TableNumber")
                         .HasColumnType("int");
 
                     b.HasKey("BookingId");
@@ -66,19 +75,10 @@ namespace Book_a_Table.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
                     b.Property<string>("CustomerEmail")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("CustomerPhone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");
 
@@ -96,13 +96,15 @@ namespace Book_a_Table.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ItemName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<bool>("IsPopular")
+                        .HasColumnType("bit");
 
-                    b.Property<double>("ItemPrice")
-                        .HasColumnType("float");
+                    b.Property<string>("ItemName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ItemPrice")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ItemId");
 

@@ -17,9 +17,8 @@ namespace Book_a_Table.Migrations
                 {
                     CustomerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    CustomerPhone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CustomerEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -32,9 +31,10 @@ namespace Book_a_Table.Migrations
                 {
                     ItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ItemName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ItemPrice = table.Column<double>(type: "float", nullable: false),
-                    IsAvailable = table.Column<bool>(type: "bit", nullable: false)
+                    ItemName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ItemPrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    IsPopular = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,6 +63,9 @@ namespace Book_a_Table.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     TableId = table.Column<int>(type: "int", nullable: false),
+                    TableNumber = table.Column<int>(type: "int", nullable: false),
+                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumberOfPeople = table.Column<int>(type: "int", nullable: false),
                     StartBookingDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndBookingDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
