@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Book_a_Table.Models
 {
@@ -11,14 +12,12 @@ namespace Book_a_Table.Models
         [Key]
         public int ItemId { get; set; }
 
-        [Required]
-        [MaxLength(50, ErrorMessage = "Menu item name should not be more than 50 characters.")]
-        public string ItemName { get; set; }
+        public string? ItemName { get; set; }
 
-        [Required]
-        public double ItemPrice { get; set; }
+        [Precision(18, 2)]
+        public decimal ItemPrice { get; set; }
 
-        [Required]
         public bool IsAvailable { get; set; }
+        public bool IsPopular { get; set; }
     }
 }

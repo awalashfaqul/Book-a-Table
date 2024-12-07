@@ -11,19 +11,10 @@ namespace Book_a_Table.Models
         [Key]
         public int CustomerId { get; set; }
 
-        [Required]
-        [StringLength(100, MinimumLength =1, ErrorMessage = "Name must be up to 100 characters.")]
-        public string CustomerName { get; set; }
+        public string? CustomerName { get; set; }
 
-        [Required]
-        [MaxLength(20)]
-        public string CustomerPhone { get; set; }
+        public string? CustomerEmail { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        [EmailAddress]
-        public string CustomerEmail { get; set; }
-
-        public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+        public ICollection<Booking> Bookings { get; set; }
     }
 }

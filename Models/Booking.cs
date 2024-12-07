@@ -9,9 +9,6 @@ namespace Book_a_Table.Models
 {
     public class Booking
     {
-        [Key]
-        public int BookingId { get; set; }
-        
         [ForeignKey("Customer")] 
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
@@ -20,6 +17,11 @@ namespace Book_a_Table.Models
         public int TableId { get; set; }
         public Table Table { get; set; }
 
+        [Key]
+        public int BookingId { get; set; }
+        public int TableNumber { get; set; }
+        public string? CustomerName { get; set; }
+        public string? CustomerEmail { get; set; }
         public int NumberOfPeople { get; set; }
 
         public DateTime StartBookingDateTime { get; set; }
