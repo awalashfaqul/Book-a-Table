@@ -7,11 +7,11 @@ namespace Book_a_Table.Models.DTO.Booking
 {
     public class UpdateBookingDTO
     {
-        public int CustomerId { get; set; }
-        public int TableId { get; set; }
+        public int TableNumber { get; set; }
+        public string? CustomerName { get; set; }
+        public string? CustomerEmail { get; set; }
         public int NumberOfPeople { get; set; }
-        public string BookingDate { get; set; } // Format: "yyyy-MM-dd"
-        public string BookingTime { get; set; } // Format: "HH:mm"
+        public DateTime StartBookingDateTime { get; set; }
         
     }
 }

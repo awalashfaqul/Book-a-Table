@@ -7,8 +7,7 @@ namespace Book_a_Table.Models.DTO.Customer
 {
     public class UpdateCustomerDTO
     {
-        public string CustomerName { get; set; }
-        public string CustomerPhone { get; set; }
-        public string CustomerEmail { get; set; }
+        public string? CustomerName { get; set; }
+        public string? CustomerEmail { get; set; }
     }
 }
